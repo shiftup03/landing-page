@@ -1,0 +1,212 @@
+@charset "UTF-8";
+
+/*
+ * Normalize
+ * 브라우저 간 기본 렌더링 차이를 최소화하기 위한 스타일
+ */
+
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+/* HTML5 semantic elements */
+main {
+  display: block;
+}
+
+/* Heading */
+h1 {
+  margin: 0.67em 0;
+  font-size: 2em;
+}
+
+/* Horizontal rule */
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+/* Preformatted text */
+pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+/* Links */
+a {
+  background-color: transparent;
+}
+
+/* Abbreviation */
+abbr[title] {
+  border-bottom: none;
+  text-decoration: underline;
+  text-decoration: underline dotted;
+}
+
+/* Strong */
+b,
+strong {
+  font-weight: bolder;
+}
+
+/* Code */
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+/* Small */
+small {
+  font-size: 80%;
+}
+
+/* Sub / Sup */
+sub,
+sup {
+  position: relative;
+  vertical-align: baseline;
+  font-size: 75%;
+  line-height: 0;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Images */
+img {
+  border-style: none;
+}
+
+/* Forms */
+button,
+input,
+optgroup,
+select,
+textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+}
+
+button,
+input {
+  overflow: visible;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+  appearance: button;
+}
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  padding: 0;
+  border-style: none;
+}
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/* Fieldset */
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/* Legend */
+legend {
+  display: table;
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 0;
+  color: inherit;
+  white-space: normal;
+}
+
+/* Progress */
+progress {
+  vertical-align: baseline;
+}
+
+/* Textarea */
+textarea {
+  overflow: auto;
+}
+
+/* Checkbox / Radio */
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+/* Number input */
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/* Search */
+[type="search"] {
+  outline-offset: -2px;
+  -webkit-appearance: textfield;
+  appearance: textfield;
+}
+
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/* File upload */
+::-webkit-file-upload-button {
+  font: inherit;
+  -webkit-appearance: button;
+}
+
+/* Details */
+details {
+  display: block;
+}
+
+summary {
+  display: list-item;
+}
+
+/* Template */
+template {
+  display: none;
+}
+
+/* Hidden */
+[hidden] {
+  display: none;
+}

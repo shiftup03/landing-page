@@ -1,0 +1,256 @@
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2') format('woff2');
+    font-weight: 100;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraLight.woff2') format('woff2');
+    font-weight: 200;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Black.woff2') format('woff2');
+    font-weight: 900;
+    font-display: swap;
+}
+
+/* @import url('https://fonts.googleapis.com/css2?family=Akshar:wght@300..700&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Dela+Gothic+One&display=swap'); */
+/* akshar폰트 */
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+}
+
+body{
+    font-family: 'Pretendard';
+}
+
+.d-flex{
+    display: flex;
+}
+
+.font-face{
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+.container{
+    width: 1320px;
+    height: 100%;
+    margin: auto;
+}
+
+.font-size-HT{
+    font-size: 64px;
+    line-height: 1.18;
+    font-weight: 700;
+}
+
+.font-size-ST{
+    font-size: 40px;
+    line-height: 52px;
+    font-weight: 700;
+}
+
+.font-size-CT{
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 600;
+}
+
+.font-size-body{
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 400;
+}
+
+.font-size-btn{
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+}
+
+.font-size-caption{
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 400;
+}
+
+.font-size-RV{
+    font-size: 10px;
+    line-height: 22px;
+    font-weight: 400;
+}
+
+.font-size-title{
+    font-size: 18px;
+    line-height: 1.66;
+    font-weight: 400;
+}
+
+.main-color{
+    color: #2f6bff;
+}
+
+.body-color{
+    color: #4b5563;
+}
+
+.body-color2{
+    color: #fff;
+}
+
+.primary-light{
+    color: #eaf2ff;
+}
+
+.container2{
+    width: 1320px;
+    margin: 0 auto;
+}
+
+
+
+
+
+/* @media(max-width:1320px){
+    .container{
+        width:100%;
+        margin: auto;
+    }
+}
+
+
+@media(max-width:1320px){
+    .container2{
+        width:100%;
+    }
+} */
+
+
+
+/* ==========================================
+   COMMONS - 공통 레이아웃
+========================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+}
+
+img,
+svg,
+video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.d-flex {
+    display: flex;
+}
+
+/* 공통 컨테이너 */
+.container,
+.container2 {
+    width: min(100% - 40px, 1320px);
+    max-width: 100%;
+    height: auto;
+    margin-inline: auto;
+}
+
+/* 섹션 공통 */
+section {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+section *,
+.header * {
+    min-width: 0;
+}
+
+section p {
+    overflow-wrap: break-word;
+}
+
+/* 기존 commons.css 오타 수정 */
+.font-size-CT {
+    line-height: 30px;
+}
+
+/* 공통 반응형 폰트 */
+@media (max-width: 1024px) {
+    .font-size-HT { font-size: 48px; }
+    .font-size-ST { font-size: 32px; line-height: 1.35; }
+    .font-size-CT { font-size: 18px; line-height: 1.5; }
+}
+
+@media (max-width: 768px) {
+    .font-size-HT { font-size: 36px; line-height: 1.25; }
+    .font-size-ST { font-size: 26px; }
+    .font-size-CT { font-size: 16px; }
+    .font-size-body { font-size: 14px; line-height: 1.6; }
+}
+
+@media (max-width: 480px) {
+    .container,
+    .container2 {
+        width: calc(100% - 32px);
+    }
+}
