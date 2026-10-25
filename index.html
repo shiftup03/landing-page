@@ -27,16 +27,23 @@
 
             <div class="nav">
                 <ul class="navi d-flex">
-                    <li><a href="#"><span class="nav-color main-color">서비스 소개</span></a></li>
-                    <li><a href="#">기능</a></li>
-                    <li><a href="#">이용 방법</a></li>
-                    <li><a href="#">후기</a></li>
+                    <li><a href="#" class="nav-item body-color">서비스 소개</a></li>
+                    <li><a href="#" class="nav-item body-color">기능</a></li>
+                    <li><a href="#" class="nav-item body-color">이용 방법</a></li>
+                    <li><a href="#" class="nav-item body-color">후기</a></li>
                 </ul>
             </div>
 
-            <div class="hero-btn">
-                <button class="btn1">
-                    <a href="#"><span>무료로 시작하기</span></a>
+            <div class="header-right d-flex">
+                <div class="hero-btn">
+                    <button class="btn1">
+                        <a href="#"><span>무료로 시작하기</span></a>
+                    </button>
+                </div>
+                <button class="hamburger-btn" type="button" aria-label="메뉴 열기" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </button>
             </div>
         </div>
@@ -86,7 +93,8 @@
             </div>
             <div class="hero-sub">
                 <!-- <h3 class="hero-sub-title body-color">MORE PLACES A BRIGHTER YOU</h3> -->
-                 <h2 class="hero-sub-title font-size-CT body-color">여행 계획의 시작, <span class="main-color">AI 여행 플래너</span></h2>
+                <h2 class="hero-sub-title font-size-CT body-color">여행 계획의 시작, <span class="main-color">AI 여행 플래너</span>
+                </h2>
                 <div class="line"></div>
                 <p class="hero-letter body-color">TRAVEL EXPLORE BELONG</p>
             </div>
@@ -107,7 +115,7 @@
 
                 <div class="sec2-box">
 
-                    <div class="box1">
+                    <div class="box1 active">
                         <div class="box-content">
                             <div class="box1-text">
                                 <h2><span class="text1-1 main-color">01</span></h2>
@@ -118,7 +126,7 @@
                             </div>
 
                             <div class="box1-icon">
-                                <button class="button1">
+                                <button class="button1" type="button" aria-label="01 여행 정보 확인">
                                     <img src="assets/images/icon/icon1.svg" alt="icon1">
                                 </button>
                             </div>
@@ -136,7 +144,7 @@
                             </div>
 
                             <div class="box2-icon">
-                                <button class="button2">
+                                <button class="button2" type="button" aria-label="02 맞춤 일정 확인">
                                     <img src="assets/images/icon/icon2.svg" alt="icon2">
                                 </button>
                             </div>
@@ -154,7 +162,7 @@
                             </div>
 
                             <div class="box3-icon">
-                                <button class="button3">
+                                <button class="button3" type="button" aria-label="03 최적 동선 확인">
                                     <img src="assets/images/icon/icon2.svg" alt="icon3">
                                 </button>
                             </div>
@@ -163,55 +171,54 @@
 
 
                 </div>
-                
+
                 <div class="mokup">
                     <img class="mokup-img" src="assets/images/iphone.jpg" alt="iphone">
-                        <div class="mokup-content">
-                            <div class="mokup-content1">
-                                <div class="mokup-text-time">
-                                    <div class="mokup-text1">
-                                        <p class="font-size-body">지금 산토리니의 날씨 정보를
+                    <div class="mokup-content">
+                        <div class="mokup-content1">
+                            <div class="mokup-text-time">
+                                <div class="mokup-text1">
+                                    <p class="font-size-body">지금 산토리니의 날씨 정보를
                                         <br>알려주세요.
                                         <br>여행 전 기상 상태를 보고 싶어요.
-                                        </p>
-                                    </div>
-                                    <div class="mokup-text1-2">
-                                        <p class="body-color">오전 9:41</p>
-                                    </div>
+                                    </p>
                                 </div>
-                                <div class="mokup-icon1">
-                                    <img src="assets/images/icon/mpkup-icon1.svg" alt="profile">
+                                <div class="mokup-text1-2">
+                                    <p class="body-color">오전 9:41</p>
                                 </div>
                             </div>
-
-                            <div class="mokup-content2">
-                                <div class="mokup-icon1">
-                                    <img src="assets/images/icon/mokup-icon2.svg" alt="profile">
-                                </div>
-                                <div class="mokup-text-time">
-                                    <div class="mokup-text2">
-                                        <p class="font-size-body">
-                                            네! 산토리니의 실시간 날씨 정보를
-                                            <br>정리해드릴게요.
-                                            <br>정보를 한눈에 확인해 보세요! 😊
-                                        </p>
-                                    </div>
-                                    <div class="mokup-text2-2">
-                                        <p class="body-color">오전 9:42</p>
-                                    </div>
-                                </div>
-                                
+                            <div class="mokup-icon1">
+                                <img src="assets/images/icon/mpkup-icon1.svg" alt="profile">
                             </div>
-
-                            <div class="mokup-content3">
-                                <img src="assets/images/mokup-content-img.jpg" alt="">
-                            </div>
-                            
                         </div>
+
+                        <div class="mokup-content2">
+                            <div class="mokup-icon1">
+                                <img src="assets/images/icon/mokup-icon2.svg" alt="profile">
+                            </div>
+                            <div class="mokup-text-time">
+                                <div class="mokup-text2">
+                                    <p class="font-size-body">
+                                        네! 산토리니의 실시간 날씨 정보를
+                                        <br>정리해드릴게요.
+                                        <br>정보를 한눈에 확인해 보세요! 😊
+                                    </p>
+                                </div>
+                                <div class="mokup-text2-2">
+                                    <p class="body-color">오전 9:42</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="mokup-content3">
+                            <img src="assets/images/mokup-content-img.jpg" alt="">
+                        </div>
+
                     </div>
                 </div>
-
             </div>
+
         </div>
     </section>
 
@@ -229,12 +236,12 @@
                         <br>계절, 취향, 분위기에 맞는 여행지가 기다리고 있어요.
                     </p>
                 </div>
-                
+
                 <button class="sec3-button">
                     <p class="sec3-cta-btn main-color">계절별 추천 여행지 둘러보기 →</p>
                 </button>
             </div>
-            
+
             <div class="sec3-cards">
                 <div class="sec3-card1-box">
                     <div class="gradient"></div>
@@ -243,7 +250,7 @@
                         <p class="sec3-card1-main-title ">봄에 가기 좋은</p>
                         <h2 class="sec3-card1-sub-title font-size-CT">벚꽃 여행지</h2>
                     </div>
-                    
+
                 </div>
 
                 <div class="sec3-card1-box">
@@ -253,7 +260,7 @@
                         <p class="sec3-card1-main-title ">여름에 떠나는</p>
                         <h2 class="sec3-card1-sub-title font-size-CT">바다 여행지</h2>
                     </div>
-                    
+
                 </div>
 
                 <div class="sec3-card1-box">
@@ -263,7 +270,7 @@
                         <p class="sec3-card1-main-title ">가을 감성 가득한</p>
                         <h2 class="sec3-card1-sub-title font-size-CT">단풍 여행지</h2>
                     </div>
-                    
+
                 </div>
 
                 <div class="sec3-card1-box">
@@ -273,16 +280,16 @@
                         <p class="sec3-card1-main-title ">겨울에 즐기는</p>
                         <h2 class="sec3-card1-sub-title font-size-CT">설경 여행지</h2>
                     </div>
-                    
+
                 </div>
             </div>
 
         </div>
 
-        
+
 
     </section>
-    
+
     <!-- 섹션4 -->
 
     <section class="sec4">
@@ -293,7 +300,7 @@
                 </div>
                 <div class="sec4-title-sub">
                     <p><span class="font-size-CT body-color">여행을 더 쉽고, 더 특별하게 만드는 Triply의 변화가
-                        <br>실제 여행자들의 경험을 통해 증명되고 있습니다.</span>
+                            <br>실제 여행자들의 경험을 통해 증명되고 있습니다.</span>
                     </p>
                 </div>
             </div>
@@ -309,29 +316,29 @@
                             <h2 class="font-size-CT">더 많은 여행이,<br>더 특별한 일상이 되는 세상</h2>
                             <p class="font-size-body body-color ">Triply는 지금 더 많은 사람들의<br>여행을 변화시키고 있습니다.</p>
                         </div>
-                    
+
                         <div class="inner-content2">
                             <div class="inner-content2-1">
                                 <h2 class="content2-1-1 main-color">98%</h2>
                                 <p class="content2-1-2 body-color">여행 만족도</p>
                             </div>
-                        
+
                             <div class="line2"></div>
-                        
+
                             <div class="inner-content2-2">
                                 <h2 class="content2-1-1 main-color">10만+</h2>
                                 <p class="content2-1-2 body-color">누적 여행자</p>
                             </div>
-                        
+
                             <div class="line2"></div>
-                        
+
                             <div class="inner-content2-3">
                                 <h2 class="content2-1-1 main-color">4.9</h2>
                                 <p class="content2-1-2 body-color">평균 평점</p>
                             </div>
-                        
+
                         </div>
-                    </div>    
+                    </div>
                 </div>
 
 
@@ -385,11 +392,11 @@
                     </div>
                 </div>
 
-                
+
             </div>
 
 
-                
+
 
 
 
@@ -404,155 +411,155 @@
             <div class="sec5-title-all">
                 <div class="sec5-main-title">
                     <h2 class="font-size-ST">여행이 다 비슷해 보여도, <span class="main-color">
-                        경험은 다르게</span>
+                            경험은 다르게</span>
                     </h2>
                 </div>
 
                 <div class="sec5-sub-title">
                     <p class="font-size-body body-color">여행을 더 쉽고, 더 특별하게 만드는 Triply의 변화가
                         <br>실제 여행자들의 경험을 통해 증명되고 있습니다.
-                        </p>
-                    </div>
+                    </p>
                 </div>
             </div>
+        </div>
 
-            <div class="sec5-main-content">
-                <ul class="sec5-content-left font-size-CT">
-                    <li class="benefit-list">실시간 현지 정보</li>
-                    <li class="benefit-list">AI맞춤 여행 추천</li>
-                    <li class="benefit-list">개인 맞춤 일정 생성</li>
-                    <li class="benefit-list">여행 중 실시간 채팅</li>
-                    <li class="benefit-list">오프라인 이용 가능</li>
-                    <li class="benefit-list">광고 없이 깔끔한 경험</li>
-                    <li class="benefit-list">여행자 커뮤니티</li>
+        <div class="sec5-main-content">
+            <ul class="sec5-content-left font-size-CT">
+                <li class="benefit-list">실시간 현지 정보</li>
+                <li class="benefit-list">AI맞춤 여행 추천</li>
+                <li class="benefit-list">개인 맞춤 일정 생성</li>
+                <li class="benefit-list">여행 중 실시간 채팅</li>
+                <li class="benefit-list">오프라인 이용 가능</li>
+                <li class="benefit-list">광고 없이 깔끔한 경험</li>
+                <li class="benefit-list">여행자 커뮤니티</li>
+            </ul>
+
+            <div class="sec5-content-right">
+                <ul class="compare-wrap triply">
+                    <li class="compare-list compare-title">
+                        <h3 class="font-size-CT main-color">Triply</h3>
+                        <p class="font-size-body main-color">당신만의 특별한 여행 플래너</p>
+                    </li>
+                    <li class="compare-list">
+                        <div class="sec5-check-icon1">
+                            <img src="assets/images/icon/sec5-icon1.svg" alt="check">
+                        </div>
+                    </li>
+                    <li class="compare-list">
+                        <div class="check-icon2">
+                            <img src="assets/images/icon/sec5-icon1.svg" alt="check">
+                        </div>
+                    </li>
+                    <li class="compare-list">
+                        <div class="sec5-check-icon3">
+                            <img src="assets/images/icon/sec5-icon1.svg" alt="check">
+                        </div>
+                    </li>
+                    <li class="compare-list">
+                        <div class="sec5-check-icon4">
+                            <img src="assets/images/icon/sec5-icon1.svg" alt="check">
+                        </div>
+                    </li>
+                    <li class="compare-list">
+                        <div class="sec5-check-icon5">
+                            <img src="assets/images/icon/sec5-icon1.svg" alt="check">
+                        </div>
+                    </li>
+                    <li class="compare-list">
+                        <div class="sec5-check-icon6">
+                            <img src="assets/images/icon/sec5-icon1.svg" alt="check">
+                        </div>
+                    </li>
+                    <li class="compare-list">
+                        <div class="sec5-check-icon7">
+                            <img src="assets/images/icon/sec5-icon1.svg" alt="check">
+                        </div>
+                    </li>
                 </ul>
 
-                <div class="sec5-content-right">
-                    <ul class="compare-wrap triply">
-                        <li class="compare-list compare-title">
-                            <h3 class="font-size-CT main-color">Triply</h3>
-                            <p class="font-size-body main-color">당신만의 특별한 여행 플래너</p>
-                        </li>
-                        <li class="compare-list">
-                            <div class="sec5-check-icon1">
-                                <img src="assets/images/icon/sec5-icon1.svg" alt="check">
-                            </div>
-                        </li>
-                        <li class="compare-list">
-                            <div class="check-icon2">
-                                <img src="assets/images/icon/sec5-icon1.svg" alt="check">
-                            </div>
-                        </li>
-                        <li class="compare-list">
-                            <div class="sec5-check-icon3">
-                                <img src="assets/images/icon/sec5-icon1.svg" alt="check">
-                            </div>
-                        </li>
-                        <li class="compare-list">
-                            <div class="sec5-check-icon4">
-                                <img src="assets/images/icon/sec5-icon1.svg" alt="check">
-                            </div>
-                        </li>
-                        <li class="compare-list">
-                            <div class="sec5-check-icon5">
-                                <img src="assets/images/icon/sec5-icon1.svg" alt="check">
-                            </div>
-                        </li>
-                        <li class="compare-list">
-                            <div class="sec5-check-icon6">
-                                <img src="assets/images/icon/sec5-icon1.svg" alt="check">
-                            </div>
-                        </li>
-                        <li class="compare-list">
-                            <div class="sec5-check-icon7">
-                                <img src="assets/images/icon/sec5-icon1.svg" alt="check">
-                            </div>
-                        </li>
-                    </ul>
-
-                    <ul class="compare-wrap">
-                        <li class="compare-list compare-title">
-                            <h3 class="font-size-CT">A사</h3>
-                            <p class="font-size-body body-color">국내 인기 여행 플랫폼</p>
-                        </li>
-                        <li class="compare-list">
-                            <img src="assets/images/icon/sec5-icon2.svg" alt="">
-                        </li>
-                        <li class="compare-list">
-                            <img src="assets/images/icon/sec5-icon2.svg" alt="">
-                        </li>
-                        <li class="compare-list">
-                            <img src="assets/images/icon/sec5-icon3.svg" alt="">
-                        </li>
-                        <li class="compare-list">
-                            <img src="assets/images/icon/sec5-icon2.svg" alt="">
-                        </li>
-                        <li class="compare-list">
-                            <img src="assets/images/icon/sec5-icon3.svg" alt="">
-                        </li>
-                        <li class="compare-list">
-                            <img src="assets/images/icon/sec5-icon3.svg" alt="">
-                        </li>
-                        <li class="compare-list">
-                            <img src="assets/images/icon/sec5-icon3.svg" alt="">
-                        </li>
-                    </ul>
-                    <ul class="compare-wrap">
-                        <li class="compare-list compare-title">
-                            <h3 class="font-size-CT">B사</h3>
-                            <p class="font-size-body body-color">글로벌 여행 예약 서비스</p>
-                        </li>
-                        <li class="compare-list">
-                            <img src="assets/images/icon/sec5-icon2.svg" alt="">
-                        </li>
-                        <li class="compare-list">
-                            <img src="assets/images/icon/sec5-icon2.svg" alt="">
-                        </li>
-                        <li class="compare-list">
-                            <img src="assets/images/icon/sec5-icon3.svg" alt="">
-                        </li>
-                        <li class="compare-list">
-                            <img src="assets/images/icon/sec5-icon2.svg" alt="">
-                        </li>
-                        <li class="compare-list">
-                            <img src="assets/images/icon/sec5-icon2.svg" alt="">
-                        </li>
-                        <li class="compare-list">
-                            <img src="assets/images/icon/sec5-icon3.svg" alt="">
-                        </li>
-                        <li class="compare-list">
-                            <img src="assets/images/icon/sec5-icon3.svg" alt="">
-                        </li>
-                    </ul>
-                    <ul class="compare-wrap">
-                        <li class="compare-list compare-title">
-                            <h3 class="font-size-CT">C사</h3>
-                            <p class="font-size-body body-color">여행 커뮤니티</p>
-                        </li>
-                        <li class="compare-list">
-                            <img src="assets/images/icon/sec5-icon2.svg" alt="">
-                        </li>
-                        <li class="compare-list">
-                            <img src="assets/images/icon/sec5-icon2.svg" alt="">
-                        </li>
-                        <li class="compare-list">
-                            <img src="assets/images/icon/sec5-icon2.svg" alt="">
-                        </li>
-                        <li class="compare-list">
-                            <img src="assets/images/icon/sec5-icon2.svg" alt="">
-                        </li>
-                        <li class="compare-list">
-                            <img src="assets/images/icon/sec5-icon2.svg" alt="">
-                        </li>
-                        <li class="compare-list">
-                            <img src="assets/images/icon/sec5-icon2.svg" alt="">
-                        </li>
-                        <li class="compare-list">
-                            <img src="assets/images/icon/sec5-icon3.svg" alt="">
-                        </li>
-                    </ul>
-                </div>
+                <ul class="compare-wrap">
+                    <li class="compare-list compare-title">
+                        <h3 class="font-size-CT">A사</h3>
+                        <p class="font-size-body body-color">국내 인기 여행 플랫폼</p>
+                    </li>
+                    <li class="compare-list">
+                        <img src="assets/images/icon/sec5-icon2.svg" alt="">
+                    </li>
+                    <li class="compare-list">
+                        <img src="assets/images/icon/sec5-icon2.svg" alt="">
+                    </li>
+                    <li class="compare-list">
+                        <img src="assets/images/icon/sec5-icon3.svg" alt="">
+                    </li>
+                    <li class="compare-list">
+                        <img src="assets/images/icon/sec5-icon2.svg" alt="">
+                    </li>
+                    <li class="compare-list">
+                        <img src="assets/images/icon/sec5-icon3.svg" alt="">
+                    </li>
+                    <li class="compare-list">
+                        <img src="assets/images/icon/sec5-icon3.svg" alt="">
+                    </li>
+                    <li class="compare-list">
+                        <img src="assets/images/icon/sec5-icon3.svg" alt="">
+                    </li>
+                </ul>
+                <ul class="compare-wrap">
+                    <li class="compare-list compare-title">
+                        <h3 class="font-size-CT">B사</h3>
+                        <p class="font-size-body body-color">글로벌 여행 예약 서비스</p>
+                    </li>
+                    <li class="compare-list">
+                        <img src="assets/images/icon/sec5-icon2.svg" alt="">
+                    </li>
+                    <li class="compare-list">
+                        <img src="assets/images/icon/sec5-icon2.svg" alt="">
+                    </li>
+                    <li class="compare-list">
+                        <img src="assets/images/icon/sec5-icon3.svg" alt="">
+                    </li>
+                    <li class="compare-list">
+                        <img src="assets/images/icon/sec5-icon2.svg" alt="">
+                    </li>
+                    <li class="compare-list">
+                        <img src="assets/images/icon/sec5-icon2.svg" alt="">
+                    </li>
+                    <li class="compare-list">
+                        <img src="assets/images/icon/sec5-icon3.svg" alt="">
+                    </li>
+                    <li class="compare-list">
+                        <img src="assets/images/icon/sec5-icon3.svg" alt="">
+                    </li>
+                </ul>
+                <ul class="compare-wrap">
+                    <li class="compare-list compare-title">
+                        <h3 class="font-size-CT">C사</h3>
+                        <p class="font-size-body body-color">여행 커뮤니티</p>
+                    </li>
+                    <li class="compare-list">
+                        <img src="assets/images/icon/sec5-icon2.svg" alt="">
+                    </li>
+                    <li class="compare-list">
+                        <img src="assets/images/icon/sec5-icon2.svg" alt="">
+                    </li>
+                    <li class="compare-list">
+                        <img src="assets/images/icon/sec5-icon2.svg" alt="">
+                    </li>
+                    <li class="compare-list">
+                        <img src="assets/images/icon/sec5-icon2.svg" alt="">
+                    </li>
+                    <li class="compare-list">
+                        <img src="assets/images/icon/sec5-icon2.svg" alt="">
+                    </li>
+                    <li class="compare-list">
+                        <img src="assets/images/icon/sec5-icon2.svg" alt="">
+                    </li>
+                    <li class="compare-list">
+                        <img src="assets/images/icon/sec5-icon3.svg" alt="">
+                    </li>
+                </ul>
             </div>
+        </div>
         </div>
 
     </section>
@@ -589,7 +596,7 @@
                         <div class="sec6-inner-img">
                             <img style="width: 274px;" src="assets/images/sec6-card1.jpg" alt="sec6-card1">
                         </div>
-                        
+
                         <div class="sec6-inner-text d-flex">
                             <div class="sec6-inner-text1">
                                 <h3 class="font-size-CT">복잡한 여행 계획, AI가<br>
@@ -615,23 +622,23 @@
                                 <div class="sec6-review-inner-right">
                                     <div class="sec6-review-inner-right-top d-flex">
                                         <div class="sec6-review-inner-right-top-left">
-                                            
+
                                             <div class="sec6-review-inner-right-top-left1 font-size-caption">
                                                 <p>김서연</p>
                                             </div>
-                                            
+
                                             <div class="sec6-review-inner-right-top-left2">
                                                 <div class="sec6-review-inner-right-top-left2-1">
                                                     <img src="assets/images/icon/sec6-star.svg" alt="star">
                                                 </div>
-                                                
+
                                                 <div class="sec6-review-inner-right-top-left2-2">
                                                     <p>4.8</p>
                                                 </div>
                                             </div>
 
                                         </div>
-                                        
+
                                         <div class="sec6-review-inner-right-top-right-icon">
                                             <img src="assets/images/icon/sec6-more-icon.svg" alt="more-icon">
                                         </div>
@@ -652,7 +659,7 @@
                         <div class="sec6-inner-img">
                             <img style="width: 274px;" src="assets/images/sec6-card2.jpg" alt="sec6-card2">
                         </div>
-                        
+
                         <div class="sec6-inner-text d-flex">
                             <div class="sec6-inner-text1">
                                 <h3 class="font-size-CT">내 취향에 딱 맞는 여행지를<br>
@@ -678,23 +685,23 @@
                                 <div class="sec6-review-inner-right">
                                     <div class="sec6-review-inner-right-top d-flex">
                                         <div class="sec6-review-inner-right-top-left">
-                                            
+
                                             <div class="sec6-review-inner-right-top-left1 font-size-caption">
                                                 <p>이준호</p>
                                             </div>
-                                            
+
                                             <div class="sec6-review-inner-right-top-left2">
                                                 <div class="sec6-review-inner-right-top-left2-1">
                                                     <img src="assets/images/icon/sec6-star.svg" alt="star">
                                                 </div>
-                                                
+
                                                 <div class="sec6-review-inner-right-top-left2-2">
                                                     <p>5.0</p>
                                                 </div>
                                             </div>
 
                                         </div>
-                                        
+
                                         <div class="sec6-review-inner-right-top-right-icon">
                                             <img src="assets/images/icon/sec6-more-icon.svg" alt="more-icon">
                                         </div>
@@ -715,7 +722,7 @@
                         <div class="sec6-inner-img">
                             <img style="width: 274px;" src="assets/images/sec6-card3.jpg" alt="sec6-card3">
                         </div>
-                        
+
                         <div class="sec6-inner-text d-flex">
                             <div class="sec6-inner-text1">
                                 <h3 class="font-size-CT">여행 중에도 필요한 정보를<br>
@@ -741,23 +748,23 @@
                                 <div class="sec6-review-inner-right">
                                     <div class="sec6-review-inner-right-top d-flex">
                                         <div class="sec6-review-inner-right-top-left">
-                                            
+
                                             <div class="sec6-review-inner-right-top-left1 font-size-caption">
                                                 <p>박민지</p>
                                             </div>
-                                            
+
                                             <div class="sec6-review-inner-right-top-left2">
                                                 <div class="sec6-review-inner-right-top-left2-1">
                                                     <img src="assets/images/icon/sec6-star.svg" alt="star">
                                                 </div>
-                                                
+
                                                 <div class="sec6-review-inner-right-top-left2-2">
                                                     <p>4.9</p>
                                                 </div>
                                             </div>
 
                                         </div>
-                                        
+
                                         <div class="sec6-review-inner-right-top-right-icon">
                                             <img src="assets/images/icon/sec6-more-icon.svg" alt="more-icon">
                                         </div>
@@ -781,18 +788,18 @@
     <section class="sec7">
         <div class="sec7-container0">
             <div class="sec7-container">
-            <div class="sec7-container2 d-flex">
-                <h2 class="font-size-ST">더 자유롭고, 더 의미 있는 여행을 위해</h2>
-                <p class="font-size-title body-color">
-                    Triply는 기술이 만드는 편리함을 넘어,<br>
-                    여행이 주는 설렘을 더 많은 사람들에게 전하고자 합니다.<br>
-                    누구나 손쉽게, 더 특별한 여행을 떠날 수 있도록.
-                </p>
-                <p class="font-size-body">MORE PLACES A BRIGHTER YOU</p>
+                <div class="sec7-container2 d-flex">
+                    <h2 class="font-size-ST">더 자유롭고, 더 의미 있는 여행을 위해</h2>
+                    <p class="font-size-title body-color">
+                        Triply는 기술이 만드는 편리함을 넘어,<br>
+                        여행이 주는 설렘을 더 많은 사람들에게 전하고자 합니다.<br>
+                        누구나 손쉽게, 더 특별한 여행을 떠날 수 있도록.
+                    </p>
+                    <p class="font-size-body">MORE PLACES A BRIGHTER YOU</p>
+                </div>
             </div>
         </div>
-        </div>
-        
+
     </section>
 
 
@@ -894,12 +901,12 @@
                     <div class="box5-title">
                         <h3 class="font-size-CT">앱 다운로드</h3>
                     </div>
-                    
+
                     <button class="sec9-box5-button d-flex">
                         <div class="sec9-btn1-icon">
                             <img src="assets/images/icon/sec9-icon2.svg" alt="sec9-icon1">
                         </div>
-                
+
                         <div class="sec9-btn1-text">
                             <p class="font-size-caption">
                                 Download on the
@@ -914,7 +921,7 @@
                         <div class="sec9-btn2-icon">
                             <img src="assets/images/icon/sec8-btn2.svg" alt="sec9-icon2">
                         </div>
-                
+
                         <div class="sec9-btn2-text">
                             <p class="font-size-caption">
                                 GET IT ON
@@ -925,16 +932,16 @@
                         </div>
                     </button>
                 </div>
-                
+
             </div>
             <div class="sec9-container-bottom d-flex">
                 <div class="sec9-container-bottom-text">
-                    <p dont-size-body>ⓒ 2026 Triply. All rights reserved.</p>
+                    <p class="font-size-body">ⓒ 2026 Triply. All rights reserved.</p>
                 </div>
             </div>
         </div>
 
-        
+
 
     </section>
 
