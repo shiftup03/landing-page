@@ -147,14 +147,21 @@ $(document).ready(function () {
         $('.mokup-content1, .mokup-content2, .mokup-content3').removeClass('slide-up');
     }
 
-    // 카드 1 활성화 시: mokup-content1~3이 1초 간격으로 하나씩 아래에서 위로 슬라이드업
-    function startMokupSlide() {
+    // 카드 활성화 시: 선택된 카드의 mokup-content1~3이 1초 간격으로 하나씩 아래에서 위로 슬라이드업
+    function startMokupSlide($targetMokupContent) {
         resetMokupSlide();
 
+        if (!$targetMokupContent || !$targetMokupContent.length) {
+            $targetMokupContent = $('.mokup-content.active');
+            if (!$targetMokupContent.length) {
+                $targetMokupContent = $('.mokup-content-box1');
+            }
+        }
+
         var $items = [
-            $('.mokup-content1'),
-            $('.mokup-content2'),
-            $('.mokup-content3')
+            $targetMokupContent.find('.mokup-content1'),
+            $targetMokupContent.find('.mokup-content2'),
+            $targetMokupContent.find('.mokup-content3')
         ];
 
         // 1초 간격 순차 슬라이드업 (0초: 카드1, 1초: 카드2, 2초: 카드3)
@@ -169,13 +176,12 @@ $(document).ready(function () {
 
     // 카드 활성화 및 토글 핸들러
     function activateSec2Card($card) {
-        var isCard1 = $card.hasClass('box1');
+        var cardIndex = $card.hasClass('box1') ? 1 : ($card.hasClass('box2') ? 2 : 3);
+        var $targetMokup = $('.mokup-content-box' + cardIndex);
 
         if ($card.hasClass('active')) {
-            // 이미 활성화된 상태에서 카드 1을 다시 누른 경우에도 슬라이드업 재생
-            if (isCard1) {
-                startMokupSlide();
-            }
+            // 이미 활성화된 상태에서 해당 카드를 다시 누른 경우에도 슬라이드업 재생
+            startMokupSlide($targetMokup);
             return;
         }
 
@@ -189,12 +195,12 @@ $(document).ready(function () {
         $card.find('.box1-icon img, .box2-icon img, .box3-icon img')
             .attr('src', 'assets/images/icon/icon1.svg');
 
-        // 카드 1이 활성화되면 1초 간격으로 mokup-content1~3 슬라이드업, 그 외 카드는 리셋
-        if (isCard1) {
-            startMokupSlide();
-        } else {
-            resetMokupSlide();
-        }
+        // 목업 컨텐츠 활성화 전환
+        $('.mokup-content').removeClass('active');
+        $targetMokup.addClass('active');
+
+        // 선택된 목업 컨텐츠의 1, 2, 3 요소 순차 슬라이드업 시작 (box1, box2, box3 동일 효과 적용)
+        startMokupSlide($targetMokup);
 
         // 589px 이하일 때 카드 높이 동기화, 768~320px일 때 목업 컨텐츠 높이 동기화
         matchSec2CardHeights();
@@ -207,16 +213,16 @@ $(document).ready(function () {
         var $mokup = $('.mokup');
         var $mokupImg = $('.mokup-img');
         var $mokupContent = $('.mokup-content');
-        var $text1 = $('.mokup-text1');
-        var $text2 = $('.mokup-text2');
-        var $content3Img = $('.mokup-content3 img');
+        var $activeContent = $('.mokup-content.active');
+        if (!$activeContent.length) {
+            $activeContent = $('.mokup-content-box1');
+        }
 
         // 768px 초과(데스크탑)인 경우 인라인 스타일 초기화
         if (winWidth > 768) {
             $mokupContent.css('gap', '');
-            $text1.css('min-height', '');
-            $text2.css('min-height', '');
-            $content3Img.css('max-height', '');
+            $('.mokup-text1, .mokup-text2').css('min-height', '');
+            $('.mokup-content3 img').css('max-height', '');
             $('.mokup-content1, .mokup-content2, .mokup-content3').css('min-height', '');
             return;
         }
@@ -235,17 +241,16 @@ $(document).ready(function () {
         var matchedGap = (winWidth <= 425) ? 4 : 5;
         $mokupContent.css('gap', matchedGap + 'px');
 
-        // 4. 컨테이너 자체의 과도한 min-height 제거 및 두 텍스트 말풍선(1, 2) 높이만 자연스럽게 일치
+        // 4. 두 텍스트 말풍선(1, 2) 높이 일치
         $('.mokup-content1, .mokup-content2, .mokup-content3').css('min-height', '');
-        $text1.css('min-height', '');
-        $text2.css('min-height', '');
+        var $text1 = $activeContent.find('.mokup-text1');
+        var $text2 = $activeContent.find('.mokup-text2');
         var h1 = $text1.outerHeight() || 0;
         var h2 = $text2.outerHeight() || 0;
         var matchedTextH = Math.max(h1, h2);
 
         if (matchedTextH > 0) {
-            $text1.css('min-height', matchedTextH + 'px');
-            $text2.css('min-height', matchedTextH + 'px');
+            $('.mokup-text1, .mokup-text2').css('min-height', matchedTextH + 'px');
         }
 
         // 5. 3번 이미지 카드가 목업 이미지 바깥(하단 베젤)으로 삐져나가거나 겹치지 않도록 안전 영역 내로 제한
@@ -253,7 +258,7 @@ $(document).ready(function () {
         var remainingH = screenH - usedH;
         var maxImgH = (winWidth <= 425 ? 80 : 105);
         if (remainingH > 25) {
-            $content3Img.css('max-height', Math.min(maxImgH, Math.floor(remainingH)) + 'px');
+            $('.mokup-content3 img').css('max-height', Math.min(maxImgH, Math.floor(remainingH)) + 'px');
         }
     }
 
@@ -281,7 +286,7 @@ $(document).ready(function () {
 
     // 초기 실행: 카드 1이 기본 활성화 상태이면 슬라이드업 시작
     if ($('.sec2-box .box1').hasClass('active')) {
-        startMokupSlide();
+        startMokupSlide($('.mokup-content-box1'));
     }
 
     // 초기 카드 및 목업 높이 일치 실행
@@ -364,4 +369,253 @@ $(document).ready(function () {
     $(window).on('load', function () {
         checkSec3Scroll();
     });
+
+    // ==========================================
+    // SECTION 4 스크롤 도달 시: 중앙 겹침 해제 슬라이드 & 서브박스 순차 블러 해제
+    // ==========================================
+    var sec4SlideTriggered = false;
+
+    // sec4 슬라이드 및 순차 선명화 시작
+    function playSec4Slide() {
+        if (sec4SlideTriggered) return;
+        sec4SlideTriggered = true;
+        $('.sec4').addClass('active');
+    }
+
+    // sec4 애니메이션 리셋 (영역을 완전히 벗어났을 때 재실행 가능하도록 초기화)
+    function resetSec4Slide() {
+        if (!sec4SlideTriggered) return;
+        sec4SlideTriggered = false;
+        $('.sec4').removeClass('active');
+    }
+
+    // 스크롤이 실제로 sec4에 도달했는지 판별하는 함수
+    function checkSec4Scroll() {
+        var $sec4 = $('.sec4');
+        if (!$sec4.length) return;
+
+        var scrollTop = $(window).scrollTop();
+        var windowHeight = $(window).height();
+        var windowBottom = scrollTop + windowHeight;
+
+        var sec4Top = $sec4.offset().top;
+        var sec4Height = $sec4.outerHeight();
+        var sec4Bottom = sec4Top + sec4Height;
+
+        // 스크롤이 sec4 상단에서 120px 이상 진입했을 때 도달 시점으로 판정
+        var triggerPoint = sec4Top + 120;
+
+        if (windowBottom >= triggerPoint && scrollTop <= sec4Bottom) {
+            playSec4Slide();
+        } else if (windowBottom < sec4Top - 80 || scrollTop > sec4Bottom + 150) {
+            // sec4 영역을 완전히 벗어났을 때 리셋하여 재도달 시 효과 재현
+            resetSec4Slide();
+        }
+    }
+
+    // 스크롤 시 실시간 체크
+    $(window).on('scroll', checkSec4Scroll);
+
+    // 페이지 로드 후 현재 스크롤 위치가 이미 sec4에 도달해 있는 경우 즉시 실행
+    $(window).on('load', function () {
+        checkSec4Scroll();
+    });
+
+    // ==========================================
+    // SECTION 6 후기 카드 무한 자동 슬라이드(오른쪽 이동) & 양방향 드래그
+    // ==========================================
+    var $sec6Slider = $('.sec6-right');
+    var $sec6Track = $sec6Slider.find('.sec6-track');
+    var $sec6OriginCards = $sec6Track.children('.sec6-card');
+
+    if ($sec6Slider.length && $sec6Track.length && $sec6OriginCards.length >= 3) {
+        // 원본 3개 카드를 복제하여 총 4세트(12개)로 무한 루프 트랙 구성
+        for (var s = 0; s < 3; s++) {
+            $sec6OriginCards.clone().appendTo($sec6Track);
+        }
+
+        var singleSetWidth = 0;
+        var currentX = 0;
+        var autoSpeed = -0.75; // 1 -> 2 -> 3 순방향 루프(오른쪽 카드 방향으로 전진)로 천천히 이동 (px/frame)
+        var isDragging = false;
+        var isHovered = false;
+        var dragStartX = 0;
+        var touchStartX = 0;
+        var touchStartY = 0;
+        var lastPointerX = 0;
+        var velocityX = 0;
+        var hasDragged = false;
+        var rafId = null;
+
+        // 1세트(원본 카드 3개)의 실제 총 너비 정밀 계산
+        function calculateSec6Width() {
+            var $allCards = $sec6Track.children('.sec6-card');
+            if ($allCards.length >= 4) {
+                // 1번째 카드와 4번째 카드의 시작 위치 차이 = 정확한 1세트 너비
+                var w = $allCards.eq(3).offset().left - $allCards.eq(0).offset().left;
+                if (w > 0) {
+                    singleSetWidth = w;
+                }
+            }
+            if (!singleSetWidth || singleSetWidth <= 0) {
+                var cardW = $allCards.eq(0).outerWidth() || 312;
+                var gap = parseFloat($sec6Track.css('gap')) || 24;
+                singleSetWidth = (cardW + gap) * 3;
+            }
+
+            // 초기 위치: 1번 카드가 화면 맨 앞에서 시작하도록 세트 2의 시작점으로 세팅 (-singleSetWidth)
+            if (currentX === 0 && singleSetWidth > 0) {
+                currentX = -singleSetWidth;
+                updateTrackPosition();
+            }
+        }
+
+        // 트랙 DOM Transform 적용
+        function updateTrackPosition() {
+            if ($sec6Track[0]) {
+                $sec6Track[0].style.transform = 'translate3d(' + currentX.toFixed(2) + 'px, 0, 0)';
+            }
+        }
+
+        // 루프 경계 처리: 끊김 없이 360도 무한 순환
+        function wrapBoundaries() {
+            if (!singleSetWidth || singleSetWidth <= 0) return;
+
+            // 1 -> 2 -> 3 순방향으로 계속 흘러가서 1세트 이상 지나갔을 때 -> 한 세트 앞으로 순간 이동
+            while (currentX <= -singleSetWidth * 2) {
+                currentX += singleSetWidth;
+            }
+            // 반대 방향(오른쪽)으로 드래그하여 너무 많이 갔을 때 -> 한 세트 뒤로 순간 이동
+            while (currentX > -singleSetWidth) {
+                currentX -= singleSetWidth;
+            }
+        }
+
+        // 60fps / 120fps 애니메이션 루프
+        function animateSec6Slider() {
+            if (!isDragging) {
+                // 관성 감속 처리
+                if (Math.abs(velocityX) > 0.1) {
+                    currentX += velocityX;
+                    velocityX *= 0.92; // 부드러운 감쇠
+                } else {
+                    velocityX = 0;
+                    // 마우스 호버 중이 아닐 때만 자동으로 오른쪽 슬라이드
+                    if (!isHovered) {
+                        currentX += autoSpeed; // 오른쪽으로 이동(+)
+                    }
+                }
+                wrapBoundaries();
+                updateTrackPosition();
+            }
+            rafId = requestAnimationFrame(animateSec6Slider);
+        }
+
+        // 마우스 호버 시 일시 정지 (카드를 편하게 읽을 수 있도록 배려)
+        $sec6Slider.on('mouseenter', function () {
+            isHovered = true;
+        }).on('mouseleave', function () {
+            isHovered = false;
+        });
+
+        // 마우스 드래그 이벤트 (PC)
+        $sec6Slider.on('mousedown', function (e) {
+            if (e.which !== 1) return; // 좌클릭만
+            isDragging = true;
+            hasDragged = false;
+            touchStartX = e.pageX;
+            lastPointerX = e.pageX;
+            dragStartX = currentX;
+            velocityX = 0;
+            $sec6Slider.addClass('is-dragging');
+            e.preventDefault();
+        });
+
+        $(window).on('mousemove', function (e) {
+            if (!isDragging) return;
+            var diff = e.pageX - touchStartX;
+            if (Math.abs(diff) > 4) {
+                hasDragged = true;
+            }
+            currentX = dragStartX + diff;
+            velocityX = (e.pageX - lastPointerX) * 0.8;
+            lastPointerX = e.pageX;
+
+            wrapBoundaries();
+            updateTrackPosition();
+        });
+
+        $(window).on('mouseup', function () {
+            if (!isDragging) return;
+            isDragging = false;
+            $sec6Slider.removeClass('is-dragging');
+        });
+
+        // 모바일 터치 이벤트 (양옆 스와이프)
+        $sec6Slider.on('touchstart', function (e) {
+            var touch = e.originalEvent.touches[0];
+            isDragging = true;
+            hasDragged = false;
+            touchStartX = touch.pageX;
+            touchStartY = touch.pageY;
+            lastPointerX = touch.pageX;
+            dragStartX = currentX;
+            velocityX = 0;
+        });
+
+        $sec6Slider.on('touchmove', function (e) {
+            if (!isDragging) return;
+            var touch = e.originalEvent.touches[0];
+            var diffX = touch.pageX - touchStartX;
+            var diffY = touch.pageY - touchStartY;
+
+            // 수평 스와이프 시 브라우저 기본 세로 스크롤 간섭 방지
+            if (Math.abs(diffX) > Math.abs(diffY)) {
+                e.preventDefault();
+            }
+
+            if (Math.abs(diffX) > 4) {
+                hasDragged = true;
+            }
+
+            currentX = dragStartX + diffX;
+            velocityX = (touch.pageX - lastPointerX) * 0.8;
+            lastPointerX = touch.pageX;
+
+            wrapBoundaries();
+            updateTrackPosition();
+        });
+
+        $sec6Slider.on('touchend touchcancel', function () {
+            if (!isDragging) return;
+            isDragging = false;
+        });
+
+        // 드래그 중 내부 클릭 이벤트 오작동 방지
+        $sec6Track.on('click', function (e) {
+            if (hasDragged) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        });
+
+        // 초기 계산 및 애니메이션 시작
+        calculateSec6Width();
+        rafId = requestAnimationFrame(animateSec6Slider);
+
+        // 이미지 로드 완료 시 정확한 폭 재계산
+        $(window).on('load', function () {
+            calculateSec6Width();
+        });
+
+        // 브라우저 리사이즈 시 폭 재계산 (디바운스)
+        var resizeSec6Timer;
+        $(window).on('resize orientationchange', function () {
+            clearTimeout(resizeSec6Timer);
+            resizeSec6Timer = setTimeout(function () {
+                calculateSec6Width();
+            }, 60);
+        });
+    }
 });
+
