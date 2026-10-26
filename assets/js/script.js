@@ -202,64 +202,8 @@ $(document).ready(function () {
         // 선택된 목업 컨텐츠의 1, 2, 3 요소 순차 슬라이드업 시작 (box1, box2, box3 동일 효과 적용)
         startMokupSlide($targetMokup);
 
-        // 589px 이하일 때 카드 높이 동기화, 768~320px일 때 목업 컨텐츠 높이 동기화
+        // 589px 이하일 때 카드 높이 동기화
         matchSec2CardHeights();
-        matchMokupContentHeights();
-    }
-
-    // 768px ~ 320px 화면에서 목업 안 요소간 간격이 벌어지지 않고 목업 이미지 안에 쏙 들어가도록 동기화하는 함수
-    function matchMokupContentHeights() {
-        var winWidth = window.innerWidth;
-        var $mokup = $('.mokup');
-        var $mokupImg = $('.mokup-img');
-        var $mokupContent = $('.mokup-content');
-        var $activeContent = $('.mokup-content.active');
-        if (!$activeContent.length) {
-            $activeContent = $('.mokup-content-box1');
-        }
-
-        // 768px 초과(데스크탑)인 경우 인라인 스타일 초기화
-        if (winWidth > 768) {
-            $mokupContent.css('gap', '');
-            $('.mokup-text1, .mokup-text2').css('min-height', '');
-            $('.mokup-content3 img').css('max-height', '');
-            $('.mokup-content1, .mokup-content2, .mokup-content3').css('min-height', '');
-            return;
-        }
-
-        // 1. 목업 렌더링 높이 측정
-        var mokupH = $mokupImg.height() || $mokup.height();
-        if (!mokupH || mokupH <= 0) {
-            var mokupW = $mokup.width() || (winWidth <= 425 ? 250 : 330);
-            mokupH = mokupW * 1.948;
-        }
-
-        // 2. 목업 스크린 내부 안전 가용 높이 (상단 노치 및 하단 홈바 제외한 약 74%)
-        var screenH = mokupH * 0.74;
-
-        // 3. 요소 간 간격을 4~5px로 좁혀 벌어짐을 완전히 방지
-        var matchedGap = (winWidth <= 425) ? 4 : 5;
-        $mokupContent.css('gap', matchedGap + 'px');
-
-        // 4. 두 텍스트 말풍선(1, 2) 높이 일치
-        $('.mokup-content1, .mokup-content2, .mokup-content3').css('min-height', '');
-        var $text1 = $activeContent.find('.mokup-text1');
-        var $text2 = $activeContent.find('.mokup-text2');
-        var h1 = $text1.outerHeight() || 0;
-        var h2 = $text2.outerHeight() || 0;
-        var matchedTextH = Math.max(h1, h2);
-
-        if (matchedTextH > 0) {
-            $('.mokup-text1, .mokup-text2').css('min-height', matchedTextH + 'px');
-        }
-
-        // 5. 3번 이미지 카드가 목업 이미지 바깥(하단 베젤)으로 삐져나가거나 겹치지 않도록 안전 영역 내로 제한
-        var usedH = (matchedTextH * 2) + (matchedGap * 2) + (winWidth <= 425 ? 18 : 22);
-        var remainingH = screenH - usedH;
-        var maxImgH = (winWidth <= 425 ? 80 : 105);
-        if (remainingH > 25) {
-            $('.mokup-content3 img').css('max-height', Math.min(maxImgH, Math.floor(remainingH)) + 'px');
-        }
     }
 
     // 카드 영역 클릭 시 토글
@@ -274,13 +218,12 @@ $(document).ready(function () {
         activateSec2Card($parentCard);
     });
 
-    // 브라우저 리사이즈 시 높이 자동 재계산 (디바운스)
+    // 브라우저 리사이즈 시 카드 높이 자동 재계산 (디바운스)
     var resizeSec2Timer;
     $(window).on('resize orientationchange', function () {
         clearTimeout(resizeSec2Timer);
         resizeSec2Timer = setTimeout(function () {
             matchSec2CardHeights();
-            matchMokupContentHeights();
         }, 50);
     });
 
@@ -289,12 +232,10 @@ $(document).ready(function () {
         startMokupSlide($('.mokup-content-box1'));
     }
 
-    // 초기 카드 및 목업 높이 일치 실행
+    // 초기 카드 높이 일치 실행
     matchSec2CardHeights();
-    matchMokupContentHeights();
     $(window).on('load', function () {
         matchSec2CardHeights();
-        matchMokupContentHeights();
     });
 
     // ==========================================

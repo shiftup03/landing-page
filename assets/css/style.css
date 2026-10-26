@@ -260,7 +260,6 @@ body {
 
 
 
-/* 섹션2 */
 
 /* 섹션2 */
 
@@ -390,10 +389,6 @@ body {
 
     justify-content: space-between;
 
-    gap: 16px;
-
-    min-width: 0;
-
 }
 
 
@@ -478,7 +473,16 @@ body {
 
 
 
-/* 목업 영역 */
+/* ==========================================================
+   [목업 영역] - 1024px 이상 기본 스타일 & 간편 수정 가이드
+   ----------------------------------------------------------
+   목업 안의 요소를 쉽게 수정하실 수 있도록 상단 변수로 정리했습니다:
+   - --mokup-top : 목업 이미지 상단(노치/헤더) 아래 시작 위치 (기본 17.5%)
+   - --mokup-gap : 말풍선과 이미지 사이의 세로 높이 간격 (기본 14px)
+   - --mokup-left : 목업 내부 좌측 시작 위치 (기본 7%)
+   - --mokup-width: 목업 내부 가로 너비 (기본 86%)
+   - --mokup-card-indent: 3번째 이미지 카드 좌측 들여쓰기 (기본 0px)
+   ========================================================== */
 
 .mokup {
     position: relative;
@@ -493,17 +497,25 @@ body {
 }
 
 .mokup-content {
-    display: flex;
+    /* [간편 수정 변수] - 1024px 이상 목업 내부 간격 및 위치 */
+    --mokup-top: 17.5%;
+    --mokup-gap: 50px;
+    --mokup-left: 7%;
+    --mokup-width: 86%;
+    --mokup-card-indent: 0px;
+
     position: absolute;
-    align-items: center;
-    justify-content: end;
+    top: var(--mokup-top);
+    left: var(--mokup-left);
+    width: var(--mokup-width);
+    display: flex;
     flex-direction: column;
-    top: 20%;
-    left: 23%;
+    gap: var(--mokup-gap);
     pointer-events: none;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.25s ease, visibility 0.25s ease;
+    box-sizing: border-box;
 }
 
 .mokup-content.active {
@@ -516,8 +528,11 @@ body {
 .mokup-content1,
 .mokup-content2,
 .mokup-content3 {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(28px);
     transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.65s ease;
     will-change: transform, opacity;
 }
@@ -530,69 +545,113 @@ body {
     transform: translateY(0);
 }
 
+/* 1. 사용자 질문 말풍선 (우측 정렬) */
 .mokup-content1 {
     display: flex;
-    gap: 15px;
-    align-items: end;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 8px;
 }
 
-.mokup-text-time {
-    width: 227px;
+.mokup-content1 .mokup-text-time {
+    width: auto;
+    max-width: calc(100% - 44px);
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
+    box-sizing: border-box;
 }
 
-.mokup-text1 {
-    width: 227px;
-    min-height: 91px;
+.mokup-content1 .mokup-text1 {
+    width: auto;
+    max-width: 100%;
     height: auto;
-    padding: 12px 14px;
+    padding: 10px 14px;
     box-sizing: border-box;
     background-color: #2f6bff;
     color: #fff;
-    border-radius: 15px;
+    border-radius: 14px;
     display: flex;
-    justify-content: center;
     align-items: center;
 }
 
-/* 카드3 클릭 시 나타나는 목업 첫 번째 텍스트 박스: 텍스트와 박스가 겹치지 않도록 여유 패딩 및 크기 최적화 */
-.mokup-content-box3 .mokup-content1 .mokup-text-time {
-    width: auto;
-    max-width: 236px;
-}
-
-.mokup-content-box3 .mokup-content1 .mokup-text1 {
-    width: auto;
-    min-width: 220px;
-    max-width: 236px;
-    min-height: 91px;
-    height: auto;
-    padding: 14px 18px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
+.mokup-content1 .mokup-text1 p,
 .mokup-content-box3 .mokup-content1 .mokup-text1 p {
-    line-height: 1.45;
-    word-break: keep-all;
+    font-size: 13px;
+    line-height: 1.4;
     margin: 0;
+    word-break: keep-all;
     text-align: left;
 }
 
-.mokup-text1-2 {
+.mokup-content1 .mokup-text1-2 {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     font-size: 10px;
-    font-weight: 400;
-    line-height: 2.2;
+    color: #888;
+    line-height: 1.5;
+    margin-top: 3px;
 }
 
-.mokup-icon1 {
-    width: 52px;
-    height: 53px;
+.mokup-content1 .mokup-text1-2 p,
+.mokup-content2 .mokup-text2-2 p {
+    margin: 0;
+    color: #888;
+}
+
+/* 2. AI 답변 말풍선 (좌측 정렬) */
+.mokup-content2 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.mokup-content2 .mokup-text-time {
+    width: auto;
+    max-width: calc(100% - 44px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+
+.mokup-content2 .mokup-text2 {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    padding: 10px 14px;
+    box-sizing: border-box;
+    background-color: #eaf2ff;
+    color: #1e293b;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.mokup-content2 .mokup-text2 p {
+    font-size: 13px;
+    line-height: 1.4;
+    margin: 0;
+    word-break: keep-all;
+    text-align: left;
+    color: #1e293b;
+}
+
+.mokup-content2 .mokup-text2-2 {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 10px;
+    color: #888;
+    line-height: 1.5;
+    margin-top: 3px;
+}
+
+/* 프로필 & AI 비행기 아이콘 공통 */
+.mokup-icon1,
+.mokup-icon2 {
+    width: 36px;
+    height: 36px;
     flex-shrink: 0;
 }
 
@@ -604,52 +663,25 @@ body {
     object-fit: contain;
 }
 
-.mokup-content2 {
-    position: absolute;
-    top: 150%;
-    left: -20%;
-    display: flex;
-    align-items: end;
-    gap: 15px;
-}
-
-.mokup-text2 {
-    width: 228px;
-    height: 113px;
-    background-color: #eaf2ff;
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.mokup-text2-2 {
-    font-size: 10px;
-    font-weight: 400;
-    line-height: 2.2;
-}
-
-.mokup-icon2 {
-    width: 50px;
-    height: 52px;
-    flex-shrink: 0;
-}
-
+/* 3. 목업 이미지 카드 (날씨/일정/동선) */
 .mokup-content3 {
-    position: absolute;
-    top: 300%;
-    left: -20%;
     display: flex;
-    align-items: end;
-    gap: 15px;
+    justify-content: flex-start;
+    padding-left: var(--mokup-card-indent, 0px);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .mokup-content3 img {
     display: block;
+    width: 100%;
     max-width: 100%;
+    max-height: 175px;
     height: auto;
-    border-radius: 15px;
+    object-fit: cover;
+    border-radius: 14px;
 }
+
 
 /* 섹션3 */
 
@@ -970,7 +1002,8 @@ body {
 
     margin-top: 100px;
 
-    overflow-x: hidden; /* 가로 스크롤 완전 방지 */
+    overflow-x: hidden;
+    /* 가로 스크롤 완전 방지 */
 
 }
 
@@ -1194,8 +1227,8 @@ body {
     transform: translateY(18px) scale(0.96);
 
     transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-                filter 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        filter 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 
     will-change: opacity, filter, transform;
 
@@ -1521,7 +1554,8 @@ body {
 
     width: 100%;
 
-    overflow-x: hidden; /* 가로 스크롤 완전 방지 */
+    overflow-x: hidden;
+    /* 가로 스크롤 완전 방지 */
 
 }
 
@@ -4806,191 +4840,61 @@ body {
         box-sizing: border-box;
     }
 
+    /* [768px 이하 목업 스타일 & 간편 수정 변수] */
     .mokup {
         width: 100%;
         max-width: clamp(280px, 72vw, 350px);
         margin: 0 auto;
         padding: 0;
         position: relative;
-        border: none;
-        background: transparent;
         overflow: hidden;
-        /* 가로 스크롤 방지 */
         box-sizing: border-box;
     }
 
-    .mokup-img {
-        display: block !important;
-        width: 100%;
-        height: auto;
-    }
-
-    /* 목업 내부 화면 안에 들어오도록 배치하고 요소 간 간격을 줄임 */
     .mokup-content {
-        position: absolute !important;
-        top: 20% !important;
-        /* 상단 카메라/노치 홀과 겹치지 않도록 안전 영역에 안착 */
-        left: 8% !important;
-        /* 좌우 베젤과 겹치지 않도록 안착 */
-        width: 84% !important;
-        height: auto !important;
-        max-height: 74% !important;
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: flex-start !important;
-        align-items: stretch !important;
-        gap: 50px !important;
-        /* 요소 간 벌어진 간격을 5px로 컴팩트하게 축소 */
-        padding: 0 !important;
-        box-sizing: border-box;
-        overflow: hidden;
-        pointer-events: none;
+        /* [간편 수정 변수] - 768px 이하 목업 내부 간격 및 위치 */
+        --mokup-top: 19%;
+        --mokup-gap: 50px;
+        --mokup-left: 8%;
+        --mokup-width: 84%;
+        --mokup-card-indent: 0px;
     }
 
-    /* 데스크탑의 top 150%, 300% 및 left -20% 오프셋을 해제하여 목업 바깥과 겹치지 않게 정렬 */
-    .mokup-content1,
-    .mokup-content2,
-    .mokup-content3 {
-        position: relative !important;
-        top: auto !important;
-        left: auto !important;
-        right: auto !important;
-        bottom: auto !important;
-        width: 100% !important;
-        box-sizing: border-box;
-        margin: 0 !important;
-    }
-
-    /* 1. 사용자 메시지 (우측 정렬) */
-    .mokup-content1 {
-        display: flex !important;
-        justify-content: flex-end;
-        align-items: flex-end;
-        gap: 5px;
-    }
-
-    .mokup-content1 .mokup-text-time {
-        width: auto;
-        max-width: calc(100% - 32px);
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        box-sizing: border-box;
-    }
-
-    .mokup-content1 .mokup-text1 {
-        width: auto;
-        max-width: 100%;
-        height: auto;
-        min-height: auto;
-        padding: 6px 10px;
-        box-sizing: border-box;
-        display: flex;
-        align-items: center;
-        border-radius: 11px;
-        background-color: #2f6bff;
-        color: #fff;
-    }
-
-    .mokup-content-box3 .mokup-content1 .mokup-text1 {
-        padding: 7px 11px;
-    }
-
-    .mokup-content1 .mokup-text1 p {
-        font-size: 10.5px;
-        line-height: 1.32;
-        margin: 0;
-        word-break: keep-all;
-        text-align: left;
-    }
-
-    .mokup-content1 .mokup-text1-2 {
-        display: flex;
-        justify-content: flex-end;
-        margin-top: 1px;
-    }
-
-    .mokup-content1 .mokup-text1-2 p {
-        font-size: 8px;
-        line-height: 1.1;
-        margin: 0;
-    }
-
-    .mokup-content1 .mokup-icon1,
-    .mokup-content2 .mokup-icon1 {
-        width: 25px;
-        height: 25px;
-        flex-shrink: 0;
-    }
-
-    /* 2. 챗봇 메시지 (좌측 정렬) */
-    .mokup-content2 {
-        display: flex !important;
-        justify-content: flex-start;
-        align-items: flex-end;
-        gap: 5px;
-    }
-
+    .mokup-content1 .mokup-text-time,
     .mokup-content2 .mokup-text-time {
-        width: auto;
         max-width: calc(100% - 32px);
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        box-sizing: border-box;
     }
 
+    .mokup-content1 .mokup-text1,
     .mokup-content2 .mokup-text2 {
-        width: auto;
-        max-width: 100%;
-        height: auto;
-        min-height: auto;
         padding: 6px 10px;
-        box-sizing: border-box;
-        display: flex;
-        align-items: center;
         border-radius: 11px;
-        background-color: #eaf2ff;
     }
 
+    .mokup-content1 .mokup-text1 p,
+    .mokup-content-box3 .mokup-content1 .mokup-text1 p,
     .mokup-content2 .mokup-text2 p {
         font-size: 10.5px;
         line-height: 1.32;
-        margin: 0;
-        word-break: keep-all;
-        color: #1e293b;
     }
 
-    .mokup-content2 .mokup-text2-2 {
-        display: flex;
-        justify-content: flex-start;
-        margin-top: 1px;
-    }
-
+    .mokup-content1 .mokup-text1-2 p,
     .mokup-content2 .mokup-text2-2 p {
         font-size: 8px;
         line-height: 1.1;
-        margin: 0;
     }
 
-    /* 3. 정보 이미지 카드 (목업 화면 안에 쏙 들어가도록 높이와 여백 최적화) */
-    .mokup-content3 {
-        display: flex !important;
-        justify-content: flex-start;
-        align-items: center;
-        padding-left: 30px;
-        box-sizing: border-box;
+    .mokup-icon1,
+    .mokup-icon2 {
+        width: 25px;
+        height: 25px;
     }
 
     .mokup-content3 img {
-        width: 100%;
-        max-width: 100%;
-        max-height: 105px;
-        height: auto;
-        object-fit: cover;
+        max-height: 110px;
         border-radius: 9px;
-        display: block;
     }
+
 
     /* SECTION 3 */
 
@@ -6100,165 +6004,11 @@ body {
 
     }
 
-    /* 모바일 480px 이하 목업 내부 컨텐츠 (간격 축소 및 겹침 방지) */
+    /* 모바일 480px 이하 목업 너비 반응형 */
     .mokup {
         max-width: clamp(265px, 78vw, 320px);
-        width: 100%;
-        margin: 0 auto;
-        padding: 0;
-        position: relative;
-        border: none;
-        background: transparent;
-        overflow: hidden;
-        box-sizing: border-box;
     }
 
-    .mokup-img {
-        display: block !important;
-        width: 100%;
-        height: auto;
-    }
-
-    .mokup-content {
-        position: absolute !important;
-        top: 13.5% !important;
-        left: 8% !important;
-        width: 84% !important;
-        height: auto !important;
-        max-height: 74% !important;
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: flex-start !important;
-        align-items: stretch !important;
-        gap: 5px !important;
-        /* 요소 간 간격 축소 */
-        padding: 0 !important;
-        box-sizing: border-box;
-        overflow: hidden;
-        pointer-events: none;
-    }
-
-    .mokup-content1,
-    .mokup-content2,
-    .mokup-content3 {
-        position: relative !important;
-        top: auto !important;
-        left: auto !important;
-        right: auto !important;
-        bottom: auto !important;
-        width: 100% !important;
-        box-sizing: border-box;
-        margin: 0 !important;
-    }
-
-    .mokup-content1 {
-        display: flex !important;
-        justify-content: flex-end;
-        align-items: flex-end;
-        gap: 5px;
-    }
-
-    .mokup-content1 .mokup-text-time {
-        width: auto;
-        max-width: calc(100% - 30px);
-        box-sizing: border-box;
-    }
-
-    .mokup-content1 .mokup-text1 {
-        width: auto;
-        max-width: 100%;
-        height: auto;
-        min-height: auto;
-        padding: 6px 9px;
-        border-radius: 11px;
-        background-color: #2f6bff;
-        color: #fff;
-    }
-
-    .mokup-content1 .mokup-text1 p {
-        font-size: 10px;
-        line-height: 1.32;
-        margin: 0;
-    }
-
-    .mokup-content1 .mokup-text1-2 {
-        display: flex;
-        justify-content: flex-end;
-        margin-top: 1px;
-    }
-
-    .mokup-content1 .mokup-text1-2 p {
-        font-size: 8px;
-        line-height: 1.1;
-        margin: 0;
-    }
-
-    .mokup-content1 .mokup-icon1,
-    .mokup-content2 .mokup-icon1 {
-        width: 24px;
-        height: 24px;
-        flex-shrink: 0;
-    }
-
-    .mokup-content2 {
-        display: flex !important;
-        justify-content: flex-start;
-        align-items: flex-end;
-        gap: 5px;
-    }
-
-    .mokup-content2 .mokup-text-time {
-        width: auto;
-        max-width: calc(100% - 30px);
-        box-sizing: border-box;
-    }
-
-    .mokup-content2 .mokup-text2 {
-        width: auto;
-        max-width: 100%;
-        height: auto;
-        min-height: auto;
-        padding: 6px 9px;
-        border-radius: 11px;
-        background-color: #eaf2ff;
-    }
-
-    .mokup-content2 .mokup-text2 p {
-        font-size: 10px;
-        line-height: 1.32;
-        color: #1e293b;
-        margin: 0;
-    }
-
-    .mokup-content2 .mokup-text2-2 {
-        display: flex;
-        justify-content: flex-start;
-        margin-top: 1px;
-    }
-
-    .mokup-content2 .mokup-text2-2 p {
-        font-size: 8px;
-        line-height: 1.1;
-        margin: 0;
-    }
-
-    .mokup-content3 {
-        display: flex !important;
-        justify-content: flex-start;
-        align-items: center;
-        padding-left: 29px;
-        box-sizing: border-box;
-    }
-
-    .mokup-content3 img {
-        width: 100%;
-        max-width: 100%;
-        max-height: 95px;
-        height: auto;
-        object-fit: cover;
-        border-radius: 9px;
-        display: block;
-    }
 
     /* SECTION 3 */
 
@@ -7319,181 +7069,52 @@ body {
 
 
 
-    /* 모바일 425px 이하 목업 내부 컨텐츠 (간격 축소 및 목업 내부 완벽 안착) */
+    /* [425px 이하 목업 스타일 & 간편 수정 변수] */
     .mokup {
         max-width: clamp(240px, 80vw, 285px);
-        width: 100%;
-        margin: 0 auto;
-        padding: 0;
-        position: relative;
-        border: none;
-        background: transparent;
-        overflow: hidden;
-        box-sizing: border-box;
-    }
-
-    .mokup-img {
-        display: block !important;
-        width: 100%;
-        height: auto;
     }
 
     .mokup-content {
-        position: absolute !important;
-        top: 20% !important;
-        /* 상단 노치/카메라 홀 아래 안전 영역 */
-        left: 8% !important;
-        width: 84% !important;
-        height: auto !important;
-        max-height: 74% !important;
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: flex-start !important;
-        align-items: stretch !important;
-        gap: 40px !important;
-        /* 초소형 화면 최적 좁은 간격 */
-        padding: 0 !important;
-        box-sizing: border-box;
-        overflow: hidden;
-        pointer-events: none;
+        /* [간편 수정 변수] - 425px 이하 목업 내부 간격 및 위치 */
+        --mokup-top: 20%;
+        --mokup-gap: 12px;
+        --mokup-card-indent: 0px;
     }
 
-    .mokup-content1,
-    .mokup-content2,
-    .mokup-content3 {
-        position: relative !important;
-        top: auto !important;
-        left: auto !important;
-        right: auto !important;
-        bottom: auto !important;
-        width: 100% !important;
-        box-sizing: border-box;
-        margin: 0 !important;
-    }
-
-    .mokup-content1 {
-        display: flex !important;
-        justify-content: flex-end;
-        align-items: flex-end;
-        gap: 4px;
-    }
-
-    .mokup-content1 .mokup-text-time {
-        width: auto;
-        max-width: calc(100% - 26px);
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        box-sizing: border-box;
-    }
-
-    .mokup-content1 .mokup-text1 {
-        width: auto;
-        max-width: 100%;
-        height: auto;
-        min-height: auto;
-        padding: 5px 8px;
-        border-radius: 9px;
-        box-sizing: border-box;
-        display: flex;
-        align-items: center;
-        background-color: #2f6bff;
-        color: #fff;
-    }
-
-    .mokup-content1 .mokup-text1 p {
-        font-size: clamp(8.8px, 2.6vw, 9.5px);
-        line-height: 1.3;
-        margin: 0;
-        word-break: keep-all;
-        text-align: left;
-    }
-
-    .mokup-content1 .mokup-text1-2 {
-        display: flex;
-        justify-content: flex-end;
-        margin-top: 1px;
-    }
-
-    .mokup-content1 .mokup-text1-2 p {
-        font-size: 7.5px;
-        line-height: 1.1;
-        margin: 0;
-    }
-
-    .mokup-content1 .mokup-icon1,
-    .mokup-content2 .mokup-icon1 {
-        width: 21px;
-        height: 21px;
-        flex-shrink: 0;
-    }
-
-    .mokup-content2 {
-        display: flex !important;
-        justify-content: flex-start;
-        align-items: flex-end;
-        gap: 4px;
-    }
-
+    .mokup-content1 .mokup-text-time,
     .mokup-content2 .mokup-text-time {
-        width: auto;
         max-width: calc(100% - 26px);
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        box-sizing: border-box;
     }
 
+    .mokup-content1 .mokup-text1,
     .mokup-content2 .mokup-text2 {
-        width: auto;
-        max-width: 100%;
-        height: auto;
-        min-height: auto;
         padding: 5px 8px;
         border-radius: 9px;
-        box-sizing: border-box;
-        display: flex;
-        align-items: center;
-        background-color: #eaf2ff;
     }
 
+    .mokup-content1 .mokup-text1 p,
+    .mokup-content-box3 .mokup-content1 .mokup-text1 p,
     .mokup-content2 .mokup-text2 p {
         font-size: clamp(8.8px, 2.6vw, 9.5px);
         line-height: 1.3;
-        margin: 0;
-        word-break: keep-all;
-        color: #1e293b;
     }
 
-    .mokup-content2 .mokup-text2-2 {
-        display: flex;
-        justify-content: flex-start;
-        margin-top: 1px;
-    }
-
+    .mokup-content1 .mokup-text1-2 p,
     .mokup-content2 .mokup-text2-2 p {
         font-size: 7.5px;
-        line-height: 1.1;
-        margin: 0;
     }
 
-    .mokup-content3 {
-        display: flex !important;
-        justify-content: flex-start;
-        align-items: center;
-        padding-left: 25px;
-        box-sizing: border-box;
+    .mokup-icon1,
+    .mokup-icon2 {
+        width: 21px;
+        height: 21px;
     }
 
     .mokup-content3 img {
-        width: 100%;
-        max-width: 100%;
-        max-height: 80px;
-        height: auto;
-        object-fit: cover;
+        max-height: 82px;
         border-radius: 7px;
-        display: block;
     }
+
 
 
 
