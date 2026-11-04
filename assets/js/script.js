@@ -4,6 +4,96 @@
  */
 
 $(document).ready(function () {
+    // ==========================================
+    // HERO 메인 텍스트 GSAP 글자별 순차 등장 애니메이션
+    // ==========================================
+    function initHeroTitleAnimation() {
+        var $heroTitle = $('.hero-main h2');
+        if (!$heroTitle.length) return;
+
+        // 원본 텍스트 추출 (TRIPLY)
+        var originalText = $heroTitle.text().trim();
+        if (!originalText) return;
+
+        // 접근성 보장: 스크린 리더가 단어 전체를 올바르게 인식하도록 설정
+        $heroTitle.attr('aria-label', originalText);
+
+        // 글자별 span 래핑
+        var splitHtml = originalText.split('').map(function (char) {
+            if (char === ' ') {
+                return '<span class="char space" aria-hidden="true">&nbsp;</span>';
+            }
+            return '<span class="char" aria-hidden="true">' + char + '</span>';
+        }).join('');
+
+        $heroTitle.html(splitHtml);
+
+        var $chars = $heroTitle.find('.char');
+
+        // 각 글자에 배경 이미지를 첫 글자~마지막 글자의 실제 너비에 맞춰 정밀 오프셋 정렬 (잘림 방지)
+        function alignCharBackgrounds() {
+            if (!$chars.length) return;
+
+            var firstEl = $chars.first()[0];
+            var lastEl = $chars.last()[0];
+            if (!firstEl || !lastEl) return;
+
+            var firstRect = firstEl.getBoundingClientRect();
+            var lastRect = lastEl.getBoundingClientRect();
+            var h2Rect = $heroTitle[0].getBoundingClientRect();
+
+            // 첫 글자(T) 왼쪽부터 마지막 글자(Y) 오른쪽 끝까지의 100% 실제 텍스트 총 너비
+            var totalWidth = lastRect.right - firstRect.left;
+            var totalHeight = h2Rect.height || lastRect.height;
+            if (!totalWidth || totalWidth <= 0) return;
+
+            $chars.each(function () {
+                var charRect = this.getBoundingClientRect();
+                // 첫 글자를 0px 기준으로 한 정밀 상대 좌표 (부모 중앙 정렬/마진 오차 완전 제거)
+                var relativeOffsetLeft = charRect.left - firstRect.left;
+
+                $(this).css({
+                    'background-size': totalWidth + 'px ' + totalHeight + 'px',
+                    'background-position': (-relativeOffsetLeft) + 'px center'
+                });
+            });
+
+            $heroTitle.css('background-image', 'none');
+        }
+
+        // 초기 좌표 정렬
+        alignCharBackgrounds();
+
+        // 웹폰트 로드 완료 및 창 리사이즈 시 정확한 좌표 재정렬
+        $(window).on('load resize orientationchange', function () {
+            alignCharBackgrounds();
+        });
+
+        // GSAP 애니메이션 실행 (글자 하나씩 0.1초 간격으로 순차 등장)
+        if (typeof gsap !== 'undefined') {
+            gsap.fromTo(
+                $chars,
+                {
+                    opacity: 0,
+                    y: 70,
+                    scale: 0.92
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.85,
+                    stagger: 0.1,
+                    ease: 'power3.out',
+                    delay: 0.15
+                }
+            );
+        } else {
+            $chars.css({ opacity: 1, transform: 'none' });
+        }
+    }
+
+    initHeroTitleAnimation();
     var $hamburger = $('.hamburger-btn');
     var $nav = $('.header .nav');
     var $header = $('.header');
@@ -88,9 +178,9 @@ $(document).ready(function () {
         }
     });
 
-    // 모바일(425px) 초과 화면으로 리사이즈 시 모바일 메뉴 상태 초기화
+    // 모바일(520px) 초과 화면으로 리사이즈 시 모바일 메뉴 상태 초기화
     $(window).on('resize', function () {
-        if ($(window).width() > 425) {
+        if ($(window).width() > 520) {
             closeMobileMenu();
         }
     });

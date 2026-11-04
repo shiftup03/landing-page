@@ -1,4 +1,4 @@
-@import url(./normalize.css);
+﻿@import url(./normalize.css);
 
 @import url(./reset.css);
 
@@ -148,7 +148,21 @@ body {
 
 
 
+.hero-main .char {
+    display: inline-block;
+    will-change: transform, opacity;
+    background-image: url(../images/hero-bg.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
 .hero-main h2 {
+    position: relative;
 
     display: inline-block;
 
@@ -5877,6 +5891,160 @@ body {
 
 /* ===== 480px 이하 ===== */
 
+/* ===== 520px 이하 모바일 반응형 메뉴 ===== */
+
+@media (max-width: 520px) {
+
+    /* HEADER & 햄버거 메뉴 */
+
+    .header {
+        position: relative;
+        padding: 14px 0;
+        z-index: 1000;
+        background: #ffffff;
+    }
+
+    .header .container {
+        width: calc(100% - 24px);
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .header .logo h1 {
+        font-size: 20px;
+    }
+
+    .header-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .header .btn1 {
+        padding: 6px 11px;
+        border-radius: 8px;
+    }
+
+    .header .btn1 a {
+        font-size: 11.5px;
+    }
+
+    .hamburger-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 24px;
+        height: 24px;
+    }
+
+    .hamburger-btn span {
+        width: 24px;
+        height: 2px;
+    }
+
+    /* 모바일 전체 화면 흰 배경 메뉴 */
+
+    html.menu-open,
+    body.menu-open {
+        overflow: hidden !important;
+        height: 100% !important;
+        max-height: 100vh !important;
+        max-height: 100dvh !important;
+        touch-action: none !important;
+        -webkit-overflow-scrolling: auto !important;
+        overscroll-behavior: none !important;
+    }
+
+    .header.nav-open .logo,
+    .header.nav-open .hero-btn {
+        display: none !important;
+    }
+
+    .header.nav-open .hamburger-btn,
+    .hamburger-btn.active {
+        position: fixed;
+        top: 18px;
+        right: 18px;
+        z-index: 9999;
+    }
+
+    .header .nav {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        background: #ffffff;
+        z-index: 9998;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        touch-action: none;
+        overscroll-behavior: none;
+    }
+
+    .header .nav.active {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        animation: headerNavFadeIn 0.22s ease-out forwards;
+    }
+
+    @keyframes headerNavFadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    .header .navi {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 28px;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .header .navi li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .header .navi a {
+        display: inline-block;
+        padding: 10px 24px;
+        font-size: 18px;
+        font-weight: 600;
+        color: #4b5563;
+        border-radius: 8px;
+        transition: color 0.12s ease, transform 0.12s ease;
+    }
+
+    .header .navi a:hover {
+        color: #2f6bff;
+    }
+
+    .header .navi a.main-color,
+    .header .navi a.active {
+        color: #2f6bff !important;
+        font-weight: 700;
+    }
+
+    .header .navi a.body-color {
+        color: #4b5563;
+    }
+
+}
+
 @media (max-width: 480px) {
 
     /* HEADER */
@@ -5892,15 +6060,6 @@ body {
     .header .logo h1 {
 
         font-size: clamp(13px, 3.5vw, 17px);
-
-    }
-
-    .header .navi {
-
-        gap: clamp(8px, 2.5vw, 12px);
-
-        font-size: clamp(10px, 2.4vw, 12px);
-
     }
 
     .header .btn1 {
