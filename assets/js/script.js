@@ -178,9 +178,9 @@ $(document).ready(function () {
         }
     });
 
-    // 모바일(520px) 초과 화면으로 리사이즈 시 모바일 메뉴 상태 초기화
+    // 모바일(768px) 초과 화면으로 리사이즈 시 모바일 메뉴 상태 초기화
     $(window).on('resize', function () {
-        if ($(window).width() > 520) {
+        if ($(window).width() > 768) {
             closeMobileMenu();
         }
     });
